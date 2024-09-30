@@ -8,7 +8,6 @@ const App = () => {
     fetch("/movieListData.json")
       .then((response) => response.json())
       .then((data) => {
-        // 데이터를 콘솔에 출력합니다.
         console.log("Fetched data:", data);
         if (data && Array.isArray(data.results)) {
           setMovies(data.results);
@@ -27,6 +26,7 @@ const App = () => {
         movies.map((movie) => (
           <MovieCard
             key={movie.id}
+            id={movie.id}
             title={movie.title}
             posterPath={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             voteAverage={movie.vote_average}
