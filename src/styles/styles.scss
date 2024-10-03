@@ -51,37 +51,36 @@ body {
 
         input {
             margin: 10px 0;
-            padding: 17px; // 패딩을 증가시켜 입력란을 크게
-            width: 220px; // 입력란 너비를 늘림
-            border: 2px solid $text-color; // 테두리 색상
-            border-radius: 20px; // 동글동글한 모서리
-            background-color: rgba(255, 255, 255, 0.8); // 투명한 배경
+            padding: 17px;
+            width: 220px;
+            border: 2px solid $text-color;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
             transition: border-color 0.3s;
 
             &:focus {
-                border-color: $movie-title-color; // 포커스 시 테두리 색상 변경
-                outline: none; // 기본 outline 제거
+                border-color: $movie-title-color;
+                outline: none;
             }
         }
 
         button {
-            padding: 15px 30px; // 버튼 크기를 키움
-            background-color: white; // 버튼 배경 색상 검정색
+            padding: 15px 30px;
+            background-color: white;
             color: black;
             border: none;
-            border-radius: 20px; // 동글동글한 버튼
+            border-radius: 20px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
 
             &:hover {
                 background-color: palevioletred; // 마우스 오버 시 색상 변화
-                transform: scale(1.05); // 마우스 오버 시 약간 확대
+                transform: scale(1.05);
             }
         }
     }
 }
 
-// Movie list 및 card 스타일 (변경 없음)
 .movie-list {
     display: flex; 
     flex-wrap: wrap; 
@@ -148,230 +147,3 @@ body {
     filter: blur(10px); 
     z-index: -1; 
 }
-
-// $text-color: #e8aee3;
-// $movie-title-color: pink;
-// $movie-rating-color: #f33ecf;
-// $other-movies-color: #66ff66;
-// $blur-image-url: 'https://media.themoviedb.org/t/p/w440_and_h660_face/dA1TGJPTVjlqPc8PiEE2PfvFBUp.jpg'; // 블러 효과에 사용될 이미지 URL
-
-// body {
-//     margin: 0; 
-//     padding: 0; 
-//     font-family: Arial, sans-serif;
-//     background-color: pink;
-// }
-
-// .app {
-//     padding: 20px;
-//     color: $text-color;
-//     text-align: center;
-
-//     h1 {
-//         font-size: 2rem;
-//         margin-bottom: 20px;
-//     }
-// }
-
-// .movie-list {
-//     display: flex; 
-//     flex-wrap: wrap;
-//     gap: 20px;
-//     justify-content: center;
-// }
-
-// .movie-card {
-//     border: 2px solid $text-color;
-//     padding: 10px;
-//     width: 150px; 
-//     background-color: palevioletred;
-//     border-radius: 8px;
-//     transition: transform 0.2s;
-
-//     &:hover {
-//         transform: scale(1.05);
-//     }
-
-//     img {
-//         width: 100%;
-//         border-radius: 4px;
-//     }
-
-//     h3 {
-//         font-size: 1.2rem;
-//         margin: 10px 0;
-//         color: $movie-title-color;
-//     }
-
-//     .rating {
-//         color: $movie-rating-color;
-//     }
-
-//     a {
-//       text-decoration: none;
-//       color: inherit;
-//     }
-// }
-
-// .movie-detail {
-//     margin-top: 20px;
-//     position: relative;
-//     text-align: center;
-//     padding: 10px;
-//     color: $text-color;
-
-//     h1 {
-//         margin-bottom: 10px;
-//         color: $movie-title-color;
-//     }
-
-//     img {
-//         width: 70%;
-//         border-radius: 8px;
-//         margin-bottom: 10px;
-//     }
-
-//     .rating {
-//         background-color: rgba(0, 0, 0, 0.7);
-//         display: inline-block;
-//         padding: 5px;
-//         border-radius: 4px;
-//         color: $movie-rating-color;
-//     }
-
-//     .genre, .synopsis {
-//         background-color: rgba(0, 0, 0, 0.7);
-//         display: inline-block;
-//         padding: 5px;
-//         border-radius: 4px;
-//         color: $text-color;
-//     }
-
-//     .other-movies {
-//         margin-top: 20px;
-//         font-size: 1.2rem;
-//         font-weight: bold;
-//         color: $other-movies-color;
-//     }
-// }
-
-// .blur-background {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%; 
-//     background-size: cover;
-//     filter: blur(10px);
-//     z-index: -1;
-//     background-image: url($blur-image-url);
-// }
-
-
-// $card-bg-color: #ffc0cb;
-// $text-color: #ff69b4;
-// $movie-title-color: #d147a3;
-// $movie-rating-color: #b03060;
-
-// body {
-//     background-color: $app-bg-color; 
-//     margin: 0;
-//     padding: 0;
-//     font-family: Arial, sans-serif;
-// }
-
-// .app {
-//     padding: 20px;
-//     color: $text-color;
-//     text-align: center;
-
-//     h1 {
-//         font-size: 2rem;
-//         margin-bottom: 20px;
-//     }
-// }
-
-// .movie-list {
-//     display: flex;
-//     flex-wrap: wrap;
-//     gap: 20px;
-//     justify-content: center;
-// }
-
-// .movie-card {
-//     border: 2px solid $text-color;
-//     padding: 10px;
-//     width: 150px;
-//     background-color: $card-bg-color;
-//     border-radius: 8px;
-//     transition: transform 0.2s;
-
-//     &:hover {
-//         transform: scale(1.05);
-//     }
-
-//     img {
-//         width: 100%;
-//         border-radius: 4px;
-//     }
-
-//     h3 {
-//         font-size: 1.2rem;
-//         margin: 10px 0;
-//         color: $movie-title-color;
-//     }
-
-//     .rating {
-//         color: $movie-rating-color;
-//     }
-// }
-
-// .movie-detail {
-//     margin-top: 20px;
-//     position: relative;
-//     text-align: center;
-//     padding: 10px;
-
-//     h1, .rating, .genre, .synopsis, .other-movies {
-//       background-color: rgba(255, 255, 255, 0.8); /* 텍스트에 반투명 배경 추가 */
-//       display: inline-block; /* 텍스트 크기만큼 배경 적용 */
-//       padding: 5px; /* 텍스트 주위 여백 */
-//       color: #333; /* 텍스트 색상 변경 */
-//       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 추가 */
-//   }
-// }
-//     img {
-//         width: 70%;
-//         border-radius: 8px;
-//         margin-bottom: 10px;
-//     }
-
-//     .rating {
-//         font-size: 1.1rem;
-//         color: $movie-rating-color;
-//     }
-
-//     .genre {
-//         font-size: 1rem;
-//         margin: 5px 0;
-//     }
-
-//     .synopsis {
-//         font-size: 1rem;
-//         line-height: 1.5;
-//         margin-top: 10px;
-//     }
-
-//     .other-movies {
-//         margin-top: 20px;
-//         font-size: 1.2rem;
-//         font-weight: bold;
-//     }
-// }
-
-// .blur-background {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     hei

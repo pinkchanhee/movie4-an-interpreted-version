@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 
 const SignUp = () => {
   const [message, setMessage] = useState('');
-  const [name, setName] = useState(''); // 이름 상태 추가
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState(''); // 비밀번호 확인 상태 추가
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 회원가입 처리 로직 추가
     if (password !== confirmPassword) {
       setMessage("비밀번호가 일치하지 않습니다.");
       return;
