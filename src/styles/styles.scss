@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $text-color: #e8aee3;
 $movie-title-color: pink;
 $movie-rating-color: #f33ecf;
@@ -14,6 +16,7 @@ body {
 .navbar {
     display: flex; 
     justify-content: space-between; 
+    align-items: center;
     padding: 10px; 
     background-color: #fff; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
@@ -23,6 +26,10 @@ body {
     }
 
     .nav-links {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+
         a {
             margin-left: 15px; 
             text-decoration: none; 
@@ -30,8 +37,25 @@ body {
             transition: color 0.3s;
 
             &:hover {
-                color: darken($text-color, 10%);
+                color: color.adjust($text-color, $lightness: -10%);
             }
+        }
+    }
+
+    .search-input {
+        padding: 10px;
+        width: 200px;
+        border: 2px solid $text-color;
+        border-radius: 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: $text-color;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+        margin-left: 20px;
+
+        &:focus {
+            border-color: $movie-title-color;
+            outline: none;
         }
     }
 }
@@ -74,7 +98,7 @@ body {
             transition: background-color 0.3s, transform 0.3s;
 
             &:hover {
-                background-color: palevioletred; // 마우스 오버 시 색상 변화
+                background-color: palevioletred;
                 transform: scale(1.05);
             }
         }
@@ -112,8 +136,8 @@ body {
     }
 
     a {
-      text-decoration: none; 
-      color: inherit; 
+        text-decoration: none; 
+        color: inherit; 
     }
 }
 
