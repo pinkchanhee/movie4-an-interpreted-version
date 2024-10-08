@@ -7,37 +7,68 @@ $other-movies-color: #66ff66;
 $blur-image-url: 'https://media.themoviedb.org/t/p/w440_and_h660_face/dA1TGJPTVjlqPc8PiEE2PfvFBUp.jpg';
 
 body {
-    margin: 0; 
-    padding: 0; 
-    font-family: Arial, sans-serif; 
-    background-color: pink; 
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: pink;
 }
 
 .navbar {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px; 
-    background-color: #fff; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
     h1 {
-        color: $text-color; 
+        color: $text-color;
     }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
 
         a {
-            margin-left: 15px; 
-            text-decoration: none; 
-            color: $text-color; 
+            margin-left: 15px;
+            text-decoration: none;
+            color: $text-color;
             transition: color 0.3s;
 
             &:hover {
                 color: color.adjust($text-color, $lightness: -10%);
+            }
+        }
+      
+        .user-thumbnail {
+            position: relative;
+            cursor: pointer;
+            padding: 10px 15px;
+            margin-left: 15px;
+            &:hover {
+                background-color: rgba(255, 0, 255, 0.2);
+            }
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 1000;
+            right: 0;
+            min-width: 150px;
+
+            a, button {
+                display: block;
+                padding: 10px;
+                color: $text-color;
+                text-decoration: none;
+
+                &:hover {
+                    background-color: rgba(255, 0, 255, 0.1);
+                }
             }
         }
     }
@@ -50,8 +81,8 @@ body {
         background-color: rgba(255, 255, 255, 0.8);
         color: $text-color;
         font-size: 1rem;
-        transition: border-color 0.3s;
         margin-left: 20px;
+        transition: border-color 0.3s;
 
         &:focus {
             border-color: $movie-title-color;
@@ -106,68 +137,126 @@ body {
 }
 
 .movie-list {
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: center; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
 .movie-card {
-    border: 2px solid $text-color; 
-    padding: 10px; 
-    width: 150px; 
-    background-color: palevioletred; 
-    border-radius: 8px; 
-    transition: transform 0.2s; 
+    border: 2px solid $text-color;
+    padding: 10px;
+    width: 150px;
+    background-color: palevioletred;
+    border-radius: 8px;
+    transition: transform 0.2s;
 
     &:hover {
-        transform: scale(1.05); 
+        transform: scale(1.05);
     }
 
     img {
-        width: 100%; 
-        border-radius: 4px; 
+        width: 100%;
+        border-radius: 4px;
     }
 
     h3 {
-        font-size: 1.2rem; 
-        margin: 10px 0; 
-        color: $movie-title-color; 
+        font-size: 1.2rem;
+        margin: 10px 0;
+        color: $movie-title-color;
     }
 
     a {
-        text-decoration: none; 
-        color: inherit; 
+        text-decoration: none;
+        color: inherit;
     }
 }
 
 .movie-detail {
-    margin-top: 20px; 
-    position: relative; 
-    text-align: center; 
-    padding: 10px; 
-    color: $text-color; 
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    color: $text-color;
 
     h1 {
-        margin-bottom: 10px; 
-        color: $movie-title-color; 
+        margin-bottom: 10px;
+        color: $movie-title-color;
     }
 
     img {
-        width: 70%; 
-        border-radius: 8px; 
-        margin-bottom: 10px; 
+        width: 70%;
+        border-radius: 8px;
+        margin-bottom: 10px;
     }
 }
 
 .blur-background {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-image: url($blur-image-url); 
-    background-size: cover; 
-    filter: blur(10px); 
-    z-index: -1; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url($blur-image-url);
+    background-size: cover;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.user-thumbnail {
+    position: relative;
+    cursor: pointer;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $movie-title-color;
+    border-radius: 50%;
+
+    span {
+        font-size: 1.5rem;
+    }
+}
+
+.dropdown-menu {
+    width: auto;
+    min-width: 150px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid $text-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 0;
+    top: 100%;
+    left: 0;
+
+    a,
+    button {
+        padding: 10px;
+        text-decoration: none;
+        color: $text-color;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-size: 1rem;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+
+        &:hover {
+            background-color: rgba(255, 0, 255, 0.2);
+        }
+    }
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
 }

@@ -25,7 +25,7 @@ const MovieDetail = () => {
   }
 
   if (!movie) {
-    return <p>영화 정보를 불러오는 중입니다...</p>;
+    return <p>Loading movie details...</p>;
   }
 
   return (
