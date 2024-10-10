@@ -1,318 +1,329 @@
-@use 'sass:color';
+@use 'sass:color'; // Sass의 color 모듈을 사용하여 색상 관련 기능을 활용합니다.
 
-$text-color: pink;
-$movie-title-color: #ff69b4;
-$movie-rating-color: #f33ecf;
-$description-color: rgba(255, 255, 255, 0.8);
-$blur-image-url: 'data:image/jpeg;base64,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';
+// 색상 변수를 정의합니다.
+$text-color: pink; // 기본 텍스트 색상
+$movie-title-color: #ff69b4; // 영화 제목 색상
+$movie-rating-color: #f33ecf; // 영화 평점 색상
+$description-color: rgba(255, 255, 255, 0.8); // 설명 텍스트 색상 (반투명 흰색)
+$blur-image-url: 'data:image/jpeg;base64,...'; // 블러 효과를 줄 이미지의 URL (Base64 형식)
 
+// body 스타일 정의
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: pink;
+    margin: 0; // 기본 margin을 제거
+    padding: 0; // 기본 padding을 제거
+    font-family: Arial, sans-serif; // 기본 폰트를 Arial로 설정
+    background-color: pink; // 배경색을 핑크색으로 설정
 }
 
+// 네비게이션 바 스타일 정의
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: palevioletred;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex; // 플렉스 박스 레이아웃 사용
+    justify-content: space-between; // 아이템 사이에 공간을 균등하게 배치
+    align-items: center; // 아이템을 수직 중앙 정렬
+    padding: 10px; // 안쪽 여백을 10px로 설정
+    background-color: palevioletred; // 배경색을 연한 보라색으로 설정
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // 그림자 효과 추가
 
     h1 {
-        color: $text-color;
+        color: $text-color; // h1 제목 색상을 $text-color로 설정 (핑크색)
     }
 
     .nav-links {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
+        display: flex; // 플렉스 박스 레이아웃 사용
+        align-items: center; // 아이템을 수직 중앙 정렬
+        margin-left: auto; // 왼쪽 여백을 자동으로 설정하여 오른쪽으로 밀기
 
         a {
-            margin-left: 15px;
-            text-decoration: none;
-            color: $text-color;
-            transition: color 0.3s;
+            margin-left: 15px; // 링크 사이에 15px 여백 추가
+            text-decoration: none; // 링크의 기본 밑줄 제거
+            color: $text-color; // 링크 색상을 $text-color로 설정 (핑크색)
+            transition: color 0.3s; // 색상 변화에 애니메이션 추가
 
             &:hover {
-                color: color.adjust($text-color, $lightness: -10%);
+                color: color.adjust($text-color, $lightness: -10%); // 마우스 오버 시 색상을 어둡게 조정
             }
         }
 
         .user-thumbnail {
-          position: relative;
-          cursor: pointer;
-          margin-left: 20px;
-          padding: 5px;
-          border-radius: 50%;
-          background-color: palevioletred;
-          transition: background-color 0.3s;
-      
-          &:hover {
-              background-color: rgb(248, 96, 174);
-          }
-      
-          font-size: 2rem;
-          color: $movie-title-color;
-      
-          &:hover .dropdown-menu {
-              display: block;
-          }
+            position: relative; // 위치를 상대적으로 설정
+            cursor: pointer; // 마우스 커서를 포인터로 변경
+            margin-left: 20px; // 왼쪽 여백을 20px로 설정
+            padding: 5px; // 안쪽 여백을 5px로 설정
+            border-radius: 50%; // 둥근 모양으로 설정
+            background-color: palevioletred; // 배경색을 연한 보라색으로 설정
+            transition: background-color 0.3s; // 배경색 변화에 애니메이션 추가
+
+            &:hover {
+                background-color: rgb(248, 96, 174); // 마우스 오버 시 배경색 변경
+            }
+
+            font-size: 2rem; // 글자 크기를 2rem으로 설정
+            color: $movie-title-color; // 글자 색상을 영화 제목 색상으로 설정
+
+            &:hover .dropdown-menu {
+                display: block; // 마우스 오버 시 드롭다운 메뉴 표시
+            }
         }
+
         .dropdown-menu {
-            position: absolute;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            z-index: 1000;
-            right: 0; 
-            top: 100%;
-            min-width: 150px;
-            display: none;
-            padding: 0;
-            margin: 0;
-            flex-direction: column;
+            position: absolute; // 위치를 절대적으로 설정
+            background-color: #fff; // 배경색을 흰색으로 설정
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // 그림자 효과 추가
+            border-radius: 5px; // 모서리를 둥글게 설정
+            z-index: 1000; // 다른 요소 위에 표시되도록 설정
+            right: 0; // 오른쪽 정렬
+            top: 100%; // 위에서 100% 아래에 위치
+            min-width: 150px; // 최소 너비를 150px로 설정
+            display: none; // 기본적으로 숨김 상태
+            padding: 0; // 안쪽 여백을 0으로 설정
+            margin: 0; // 바깥 여백을 0으로 설정
+            flex-direction: column; // 세로 방향으로 정렬
 
             a, button {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 10px 0;
-                color: $text-color;
-                text-decoration: none;
-                text-align: center;
-                border: none;
-                background-color: transparent;
-                width: 100%;
-                margin: 0;
-                font-size: 1rem;
+                display: flex; // 플렉스 박스 레이아웃 사용
+                justify-content: center; // 중앙 정렬
+                align-items: center; // 수직 중앙 정렬
+                padding: 10px 0; // 위아래 10px, 좌우 0px 여백
+                color: $text-color; // 글자 색상을 $text-color로 설정
+                text-decoration: none; // 기본 밑줄 제거
+                text-align: center; // 텍스트 중앙 정렬
+                border: none; // 기본 테두리 제거
+                background-color: transparent; // 배경색을 투명하게 설정
+                width: 100%; // 너비를 100%로 설정
+                margin: 0; // 바깥 여백을 0으로 설정
+                font-size: 1rem; // 글자 크기를 1rem으로 설정
 
                 &:hover {
-                    background-color: rgba(255, 0, 255, 0.1);
+                    background-color: rgba(255, 0, 255, 0.1); // 마우스 오버 시 배경색 변경
                 }
             }
 
             button {
-                cursor: pointer;
+                cursor: pointer; // 마우스 커서를 포인터로 변경
             }
         }
     }
 
     .search-input {
-        padding: 10px;
-        width: 200px;
-        border: 2px solid $text-color;
-        border-radius: 30px;
-        background-color: rgba(255, 255, 255, 0.8);
-        color: $text-color;
-        font-size: 1rem;
-        margin-left: 20px;
-        transition: border-color 0.3s;
+        padding: 10px; // 안쪽 여백을 10px로 설정
+        width: 200px; // 너비를 200px로 설정
+        border: 2px solid $text-color; // 테두리를 $text-color로 설정
+        border-radius: 30px; // 둥근 모양으로 설정
+        background-color: rgba(255, 255, 255, 0.8); // 배경색을 반투명 흰색으로 설정
+        color: $text-color; // 글자 색상을 $text-color로 설정
+        font-size: 1rem; // 글자 크기를 1rem으로 설정
+        margin-left: 20px; // 왼쪽 여백을 20px로 설정
+        transition: border-color 0.3s; // 테두리 색상 변화에 애니메이션 추가
 
         &:focus {
-            border-color: $movie-title-color;
-            outline: none;
+            border-color: $movie-title-color; // 포커스 시 테두리 색상을 영화 제목 색상으로 변경
+            outline: none; // 포커스 아웃라인 제거
         }
     }
 }
 
-
+// 회원가입, 로그인, 구글 로그인 스타일 정의
 .signup, .login, .google-login {
-    margin: 20px;
-    text-align: center;
+    margin: 20px; // 바깥 여백을 20px로 설정
+    text-align: center; // 텍스트 중앙 정렬
 
     h2 {
-        margin-bottom: 20px;
+        margin-bottom: 20px; // 아래 여백을 20px로 설정
     }
 
     form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: flex; // 플렉스 박스 레이아웃 사용
+        flex-direction: column; // 세로 방향으로 정렬
+        align-items: center; // 중앙 정렬
 
         input {
-            margin: 10px 0;
-            padding: 17px;
-            width: 220px;
-            border: 2px solid $text-color;
-            border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            transition: border-color 0.3s;
+            margin: 10px 0; // 위아래 10px 여백 추가
+            padding: 17px; // 안쪽 여백을 17px로 설정
+            width: 220px; // 너비를 220px로 설정
+            border: 2px solid $text-color; // 테두리를 $text-color로 설정
+            border-radius: 20px; // 둥근 모양으로 설정
+            background-color: rgba(255, 255, 255, 0.8); // 배경색을 반투명 흰색으로 설정
+            transition: border-color 0.3s; // 테두리 색상 변화에 애니메이션 추가
 
             &:focus {
-                border-color: $movie-title-color;
-                outline: none;
+                border-color: $movie-title-color; // 포커스 시 테두리 색상을 영화 제목 색상으로 변경
+                outline: none; // 포커스 아웃라인 제거
             }
         }
 
         button {
-            padding: 15px 30px;
-            background-color: white;
-            color: black;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            padding: 15px 30px; // 안쪽 여백 설정
+            background-color: white; // 배경색을 흰색으로 설정
+            color: black; // 글자 색상을 검정색으로 설정
+            border: none; // 기본 테두리 제거
+            border-radius: 20px; // 둥근 모양으로 설정
+            cursor: pointer; // 마우스 커서를 포인터로 변경
+            transition: background-color 0.3s, transform 0.3s; // 배경색과 변형에 애니메이션 추가
 
             &:hover {
-                background-color: palevioletred;
-                transform: scale(1.05);
+                background-color: palevioletred; // 마우스 오버 시 배경색 변경
+                transform: scale(1.05); // 마우스 오버 시 크기 확대
             }
         }
     }
 }
 
+// 영화 목록 스타일 정의
 .movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    display: flex; // 플렉스 박스 레이아웃 사용
+    flex-wrap: wrap; // 아이템을 여러 줄로 감싸기
+    gap: 20px; // 아이템 사이에 20px 간격 추가
+    justify-content: center; // 중앙 정렬
 }
 
+// 영화 카드 스타일 정의
 .movie-card {
-    border: 2px solid $text-color;
-    padding: 10px;
-    width: 150px;
-    background-color: palevioletred;
-    border-radius: 8px;
-    transition: transform 0.2s;
+    border: 2px solid $text-color; // 테두리를 $text-color로 설정
+    padding: 10px; // 안쪽 여백을 10px로 설정
+    width: 150px; // 너비를 150px로 설정
+    background-color: palevioletred; // 배경색을 연한 보라색으로 설정
+    border-radius: 8px; // 둥근 모양으로 설정
+    transition: transform 0.2s; // 변형에 애니메이션 추가
 
     &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 20px rgba(255, 0, 255, 0.5);
+        transform: scale(1.05); // 마우스 오버 시 크기 확대
+        box-shadow: 0 4px 20px rgba(255, 0, 255, 0.5); // 그림자 효과 추가
     }
 
     img {
-        width: 100%;
-        border-radius: 4px;
+        width: 100%; // 이미지 너비를 100%로 설정
+        border-radius: 4px; // 둥근 모양으로 설정
     }
 
     h3 {
-        font-size: 1.2rem;
-        margin: 10px 0;
-        color: powderblue;
+        font-size: 1.2rem; // 글자 크기를 1.2rem으로 설정
+        margin: 10px 0; // 위아래 여백을 10px로 설정
+        color: powderblue; // 글자 색상을 파우더 블루로 설정
     }
 
     a {
-        text-decoration: none;
-        color: pink;
+        text-decoration: none; // 링크의 기본 밑줄 제거
+        color: pink; // 링크 색상을 핑크색으로 설정
     }
 }
 
+// 영화 상세 페이지 스타일 정의
 .movie-detail {
-    margin-top: 20px;
-    position: relative;
-    text-align: center;
-    padding: 10px;
-    color: rgb(252, 0, 135);
+    margin-top: 20px; // 위쪽 여백을 20px로 설정
+    position: relative; // 위치를 상대적으로 설정
+    text-align: center; // 텍스트 중앙 정렬
+    padding: 10px; // 안쪽 여백을 10px로 설정
+    color: rgb(252, 0, 135); // 글자 색상을 분홍색으로 설정
 
     h1 {
-        margin-bottom: 10px;
-        color: $movie-title-color;
+        margin-bottom: 10px; // 아래 여백을 10px로 설정
+        color: $movie-title-color; // 제목 색상을 영화 제목 색상으로 설정
     }
 
     img {
-        width: 70%;
-        border-radius: 8px;
-        margin-bottom: 10px;
+        width: 70%; // 이미지 너비를 70%로 설정
+        border-radius: 8px; // 둥근 모양으로 설정
+        margin-bottom: 10px; // 아래 여백을 10px로 설정
     }
 }
 
+// 블러 배경 스타일 정의
 .blur-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url($blur-image-url);
-    background-size: cover;
-    filter: blur(10px);
-    z-index: -1;
+    position: fixed; // 고정 위치로 설정
+    top: 0; // 위쪽 위치를 0으로 설정
+    left: 0; // 왼쪽 위치를 0으로 설정
+    width: 100%; // 너비를 100%로 설정
+    height: 100%; // 높이를 100%로 설정
+    background-image: url($blur-image-url); // 블러 이미지 설정
+    background-size: cover; // 배경 이미지를 커버로 설정
+    filter: blur(10px); // 블러 효과 추가
+    z-index: -1; // 다른 요소 뒤에 배치
 }
 
+// 사용자 썸네일 스타일 정의
 .user-thumbnail {
-    position: relative;
-    cursor: pointer;
-    width: 40px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $movie-title-color;
-    border-radius: 50%;
+    position: relative; // 위치를 상대적으로 설정
+    cursor: pointer; // 마우스 커서를 포인터로 변경
+    width: 40px; // 너비를 40px로 설정
+    height: 30px; // 높이를 30px로 설정
+    display: flex; // 플렉스 박스 레이아웃 사용
+    justify-content: center; // 중앙 정렬
+    align-items: center; // 수직 중앙 정렬
+    background-color: $movie-title-color; // 배경색을 영화 제목 색상으로 설정
+    border-radius: 50%; // 둥근 모양으로 설정
 
     span {
-        font-size: 1.5rem;
+        font-size: 1.5rem; // 글자 크기를 1.5rem으로 설정
     }
 }
 
+// 드롭다운 메뉴 스타일 정의
 .dropdown-menu {
-  position: absolute;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  z-index: 1000;
-  right: 0;
-  min-width: 150px;
-  display: none;
+    position: absolute; // 위치를 절대적으로 설정
+    background-color: #fff; // 배경색을 흰색으로 설정
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // 그림자 효과 추가
+    border-radius: 5px; // 모서리를 둥글게 설정
+    z-index: 1000; // 다른 요소 위에 표시되도록 설정
+    right: 0; // 오른쪽 정렬
+    min-width: 150px; // 최소 너비를 150px로 설정
+    display: none; // 기본적으로 숨김 상태
 
-  &.open {
-      display: flex;
-      flex-direction: column;
-  }
+    &.open {
+        display: flex; // 'open' 클래스가 있을 때 드롭다운 메뉴 표시
+        flex-direction: column; // 세로 방향으로 정렬
+    }
 
-  a, button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-      color: $text-color;
-      text-decoration: none;
-      width: 100%;
+    a, button {
+        display: flex; // 플렉스 박스 레이아웃 사용
+        justify-content: center; // 중앙 정렬
+        align-items: center; // 수직 중앙 정렬
+        padding: 10px; // 안쪽 여백을 10px로 설정
+        color: $text-color; // 글자 색상을 $text-color로 설정
+        text-decoration: none; // 기본 밑줄 제거
+        width: 100%; // 너비를 100%로 설정
 
-      &:hover {
-          background-color: rgba(255, 0, 255, 0.1);
-      }
-  }
+        &:hover {
+            background-color: rgba(255, 0, 255, 0.1); // 마우스 오버 시 배경색 변경
+        }
+    }
 }
 
+// 북마크 버튼 스타일 정의
 .bookmark-button {
-  padding: 10px 15px;
-  background-color: pink;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+    padding: 10px 15px; // 안쪽 여백 설정
+    background-color: pink; // 배경색을 핑크색으로 설정
+    color: white; // 글자 색상을 흰색으로 설정
+    border: none; // 기본 테두리 제거
+    border-radius: 25px; // 둥근 모양으로 설정
+    font-size: 0.9rem; // 글자 크기를 0.9rem으로 설정
+    cursor: pointer; // 마우스 커서를 포인터로 변경
+    transition: background-color 0.3s, transform 0.3s; // 배경색과 변형에 애니메이션 추가
 
-  &:hover {
-      background-color: rgb(242, 64, 124);
-      transform: scale(1.1);
-  }
+    &:hover {
+        background-color: rgb(242, 64, 124); // 마우스 오버 시 배경색 변경
+        transform: scale(1.1); // 마우스 오버 시 크기 확대
+    }
 
-  &:active {
-      transform: scale(0.95);
-  }
+    &:active {
+        transform: scale(0.95); // 클릭할 때 크기 축소
+    }
 }
+
+// 구글 로그인 버튼 스타일 정의
 .google-login {
-  padding: 15px 30px;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+    padding: 15px 30px; // 안쪽 여백 설정
+    background-color: white; // 배경색을 흰색으로 설정
+    color: black; // 글자 색상을 검정색으로 설정
+    border: none; // 기본 테두리 제거
+    border-radius: 20px; // 둥근 모양으로 설정
+    cursor: pointer; // 마우스 커서를 포인터로 변경
+    transition: background-color 0.3s, transform 0.3s; // 배경색과 변형에 애니메이션 추가
 
-  &:hover {
-      background-color: palevioletred;
-      transform: scale(1.05);
-  }
+    &:hover {
+        background-color: palevioletred; // 마우스 오버 시 배경색 변경
+        transform: scale(1.05); // 마우스 오버 시 크기 확대
+    }
 }
-
-
 
 
 // https://media.themoviedb.org/t/p/w440_and_h660_face/dA1TGJPTVjlqPc8PiEE2PfvFBUp.jpg
