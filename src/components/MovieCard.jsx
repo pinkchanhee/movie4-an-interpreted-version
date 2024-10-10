@@ -23,13 +23,14 @@ const handleBookmark = async (movieId) => {
 };
 
 const MovieCard = ({ id, title, posterPath, voteAverage }) => {
+  const posterUrl = `https://image.tmdb.org/t/p/w500${posterPath}`;
   return (
     <div className="movie-card">
       <Link to={`/details/${id}`}>
-        <img src={posterPath} alt={title} />
+        <img src={posterUrl} alt={title} />
         <h3>{title}</h3>
         <p>평점: {voteAverage}</p>
-        <button onClick={() => handleBookmark(id)}>북마크</button>
+        <button className="bookmark-button" onClick={() => handleBookmark(id)}>북마크</button>
       </Link>
     </div>
   );

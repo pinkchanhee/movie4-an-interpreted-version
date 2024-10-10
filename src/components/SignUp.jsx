@@ -82,29 +82,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-// import React, { useState } from 'react';
-
-// const SignUp = () => {
-//   const [message, setMessage] = useState('');
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // 회원가입 처리 로직 추가
-//     setMessage("회원가입 완료!");
-//     console.log("회원가입 처리");
-//   };
-
-//   return (
-//     <div className="signup">
-//       <h2>회원가입</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" placeholder="이메일" required />
-//         <input type="password" placeholder="비밀번호" required />
-//         <button type="submit">가입하기</button>
-//       </form>
-//       {message && <p>{message}</p>}
-//     </div>
-//   );
-// };
-
-// export default SignUp;

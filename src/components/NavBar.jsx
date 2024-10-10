@@ -15,7 +15,7 @@ const NavBar = ({ onSearch, user, handleLogout }) => {
       <h1>PINK World</h1>
       <div className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/mypage">My Page</Link>
+        {user && <Link to="/mypage">My Page</Link>}
         {user ? (
           <div 
             className="user-thumbnail" 
@@ -25,7 +25,7 @@ const NavBar = ({ onSearch, user, handleLogout }) => {
             <span role="img" aria-label="user">❤️</span>
             {menuOpen && (
               <div className="dropdown-menu">
-                <Link to="/mypage">관심 목록</Link>
+                <Link to="/mypage">북마크 목록</Link>
                 <button onClick={handleLogout}>로그아웃</button>
               </div>
             )}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import MovieCard from "./components/MovieCard";
 import MovieDetail from './components/MovieDetail';
 import NavBar from './components/NavBar';
@@ -20,12 +20,24 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [user, setUser] = useState(null);
   const debouncedSearchTerm = useDebounce(searchTerm, 200);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data.user) {
+        setUser(data.user);
+        navigate('/');
+      }
+    };
+    fetchUser();
+  }, []);
 
   useEffect(() => {
     const fetchPopularMovies = async () => {
       try {
         const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-        if (!response.ok) throw new Error('네트워크 응답이 올바르지 않습니다.');
+        if (!response.ok) throw new Error(`네트워크 응답이 올바르지 않습니다: ${response.statusText}`);;
         const data = await response.json();
         setMovies(data.results);
       } catch (error) {
@@ -50,6 +62,7 @@ const App = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
+    navigate('/login');
   };
 
   const handleLogin = async (email, password) => {
@@ -64,6 +77,22 @@ const App = () => {
     } else {
       setUser(data.user);
       return {};
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        }
+      }
+    });
+
+    if (error) {
+      console.error("구글 로그인 실패:", error.message);
     }
   };
 
@@ -83,7 +112,7 @@ const App = () => {
                   key={movie.id}
                   id={movie.id}
                   title={movie.title}
-                  posterPath={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  posterPath={`${movie.poster_path}`}
                   voteAverage={movie.vote_average}
                 />
               ))
@@ -92,7 +121,7 @@ const App = () => {
         } />
         <Route path="/details/:id" element={<MovieDetail />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/login" element={<Login handleLogin={handleLogin} handleGoogleLogin={handleGoogleLogin} />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </>

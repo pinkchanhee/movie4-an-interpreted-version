@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, handleGoogleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -9,7 +9,6 @@ const Login = ({ handleLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const { error } = await handleLogin(email, password);
     if (error) {
       setMessage(error.message);
@@ -17,6 +16,10 @@ const Login = ({ handleLogin }) => {
       setMessage("로그인 성공!");
       navigate('/');
     }
+  };
+
+  const handleGoogleClick = async () => {
+    await handleGoogleLogin();
   };
 
   return (
@@ -39,6 +42,7 @@ const Login = ({ handleLogin }) => {
         />
         <button type="submit">Login</button>
       </form>
+      <button className="google-login" onClick={handleGoogleClick}>Google로 로그인</button>
       {message && <p>{message}</p>}
     </div>
   );
